@@ -11,5 +11,7 @@
 
         void saveData();
 
+        void exit ();
+
     }
 

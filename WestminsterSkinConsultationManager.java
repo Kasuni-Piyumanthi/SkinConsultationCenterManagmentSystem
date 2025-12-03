@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     public int doctor_limit;
 
     public void WestminsterLibraryManager(int maxNumberOfDoctors) {
-        doctorList = new ArrayList<Doctor>();
+        doctorList = new ArrayList< >();
         doctor_limit = maxNumberOfDoctors;
 
     }
@@ -27,9 +28,10 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
         System.out.println("To Save the data, press 4");
 
+        System.out.println("To Exit, press 0");
+
         Scanner s = new Scanner(System.in);
-        int choice;
-        choice = s.nextInt();
+        int choice = s.nextInt();
 
 
         switch (choice) {
@@ -50,6 +52,13 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 this.saveData();
                 break;
 
+            case 0:
+                this.exit();
+                break;
+
+            default:
+                System.out.println("Invalid.Try again.");
+
         }
 
         return exit;
@@ -59,10 +68,30 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     public void addNewDoctor() {
         Scanner s = new Scanner (System.in);
 
-        if(doctorList.size() < doctor_limit){
+        if(doctorList.size() >= doctor_limit){
+            System.out.println("Doctor limit reached to " + doctor_limit + ". So, can't add more doctors.");
+            return;
+        }
+
+        System.out.println("Enter Doctor's First Name: ");
+        String name = s.nextLine();
+
+        System.out.println("Enter Doctor's Last Name: ");
+        String surname = s.nextLine();
+
+        System.out.println("Enter Doctor's Date of Birth: ");
+        LocalDate dateOfBirth = LocalDate.parse(s.next());
+
+        System.out.println("Enter Doctor's Mobile Number: ");
+        int mobileNumber = s.nextInt();
+
+        System.out.println("Enter Doctor's Medical Licence Number");
+        int medicalLicenceNumber = s.nextInt();
+
+        System.out.println("Enter Doctor's Specialisation");
+        String specialisation = s.nextLine();
 
 
-            }
 
 
     }
@@ -79,6 +108,11 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     @Override
     public void saveData() {
+
+    }
+
+    @Override
+    public void exit() {
 
     }
 }
